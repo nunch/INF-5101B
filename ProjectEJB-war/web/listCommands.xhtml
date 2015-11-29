@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+            <div class="row">
+			<div class="col-sm-12">
+                            <h1>#{messages["listCommands.myCommands"]}</h1>
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+                                                            <td class="text-center">#{messages["listCommands.commandNumber"]}</td>
+                                                            <td class="text-center">#{messages["listCommands.adressAdress"]}</td>
+                                                            <td class="text-center">#{messages["listCommands.adressCity"]}</td>
+                                                            <td class="text-center">#{messages["listCommands.adressCountry"]}</td>
+                                                            <td class="text-center">#{messages["listCommands.viewCommand"]}</td>
+							</tr>
+						</thead>
+						<tbody id="tbody">
+                                                    <c:forEach items="#{database.getCommands(sessionScope['user'])}" var="command">
+                                                        <tr>
+								<td class="text-center">
+                                                                    ${command.id}
+								</td>
+								<td class="text-center">
+                                                                    ${command.adressId.adress}
+								</td>
+								<td class="text-center">
+                                                                    ${command.adressId.cityName}
+								</td>
+								<td class="text-center">
+                                                                    ${command.adressId.country}
+								</td>
+                                                            <td rowspan="2" style="vertical-align: middle">
+                                                                <form action="#{request.contextPath}/web/viewCommand" method="post">
+                                                                    <input type="hidden" name="commandId" value="#{command.id}"/>
+                                                                    <input type="submit" class="btn btn-primary" value="#{messages['listCommands.viewCommand']}"/>
+                                                                </form>
+                                                            </td>
+							</tr>
+                                                        <tr>
+                                                            <td class="text-center">
+                                                                #{messages["listCommands.card"]}
+                                                            </td>
+                                                            <td class="text-center" colspan="3">
+                                                                ${command.cardId.name}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="5"  style="padding: 0px;"></td>
+                                                        </tr>
+                                                    </c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+        </ui:define>
+    </ui:composition>
+</html>

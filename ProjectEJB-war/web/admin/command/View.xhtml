@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.ViewCommandTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{messages.ViewCommandLabel_id}"/>
+                    <h:outputText value="#{commandController.selected.id}" title="#{messages.ViewCommandTitle_id}"/>
+                    <h:outputText value="#{messages.ViewCommandLabel_amount}"/>
+                    <h:outputText value="#{commandController.selected.amount}" title="#{messages.ViewCommandTitle_amount}"/>
+                    <h:outputText value="#{messages.ViewCommandLabel_dateCreated}"/>
+                    <h:outputText value="#{commandController.selected.dateCreated}" title="#{messages.ViewCommandTitle_dateCreated}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{messages.ViewCommandLabel_userId}"/>
+                    <h:outputText value="#{commandController.selected.userId}" title="#{messages.ViewCommandTitle_userId}"/>
+                    <h:outputText value="#{messages.ViewCommandLabel_cardId}"/>
+                    <h:outputText value="#{commandController.selected.cardId}" title="#{messages.ViewCommandTitle_cardId}"/>
+                    <h:outputText value="#{messages.ViewCommandLabel_adressId}"/>
+                    <h:outputText value="#{commandController.selected.adressId}" title="#{messages.ViewCommandTitle_adressId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{commandController.destroyAndView}" value="#{messages.ViewCommandDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{messages.ViewCommandEditLink}"/>
+                <br />
+                <h:commandLink action="#{commandController.prepareCreate}" value="#{messages.ViewCommandCreateLink}" />
+                <br />
+                <h:commandLink action="#{commandController.prepareList}" value="#{messages.ViewCommandShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/admin/index.xhtml" value="#{messages.ViewCommandIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

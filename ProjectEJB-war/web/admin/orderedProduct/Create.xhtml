@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.CreateOrderedProductTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{messages.CreateOrderedProductLabel_quantity}" for="quantity" />
+                    <h:inputText id="quantity" value="#{orderedProductController.selected.quantity}" title="#{messages.CreateOrderedProductTitle_quantity}" required="true" requiredMessage="#{messages.CreateOrderedProductRequiredMessage_quantity}"/>
+                    <h:outputLabel value="#{messages.CreateOrderedProductLabel_product}" for="product" />
+                    <h:selectOneMenu id="product" value="#{orderedProductController.selected.product}" title="#{messages.CreateOrderedProductTitle_product}" required="true" requiredMessage="#{messages.CreateOrderedProductRequiredMessage_product}">
+                        <f:selectItems value="#{productController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{messages.CreateOrderedProductLabel_user}" for="user" />
+                    <h:selectOneMenu id="user" value="#{orderedProductController.selected.user}" title="#{messages.CreateOrderedProductTitle_user}" required="true" requiredMessage="#{messages.CreateOrderedProductRequiredMessage_user}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{orderedProductController.create}" value="#{messages.CreateOrderedProductSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{orderedProductController.prepareList}" value="#{messages.CreateOrderedProductShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/admin/index.xhtml" value="#{messages.CreateOrderedProductIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

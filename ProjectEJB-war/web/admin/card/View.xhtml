@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.ViewCardTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{messages.ViewCardLabel_id}"/>
+                    <h:outputText value="#{cardController.selected.id}" title="#{messages.ViewCardTitle_id}"/>
+                    <h:outputText value="#{messages.ViewCardLabel_name}"/>
+                    <h:outputText value="#{cardController.selected.name}" title="#{messages.ViewCardTitle_name}"/>
+                    <h:outputText value="#{messages.ViewCardLabel_userId}"/>
+                    <h:outputText value="#{cardController.selected.userId}" title="#{messages.ViewCardTitle_userId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cardController.destroyAndView}" value="#{messages.ViewCardDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{messages.ViewCardEditLink}"/>
+                <br />
+                <h:commandLink action="#{cardController.prepareCreate}" value="#{messages.ViewCardCreateLink}" />
+                <br />
+                <h:commandLink action="#{cardController.prepareList}" value="#{messages.ViewCardShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/admin/index.xhtml" value="#{messages.ViewCardIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.EditUserTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{messages.EditUserLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{userController.selected.id}" title="#{messages.EditUserTitle_id}" required="true" requiredMessage="#{messages.EditUserRequiredMessage_id}"/>
+                    <h:outputLabel value="#{messages.EditUserLabel_firstname}" for="firstname" />
+                    <h:inputText id="firstname" value="#{userController.selected.firstname}" title="#{messages.EditUserTitle_firstname}" />
+                    <h:outputLabel value="#{messages.EditUserLabel_lastname}" for="lastname" />
+                    <h:inputText id="lastname" value="#{userController.selected.lastname}" title="#{messages.EditUserTitle_lastname}" />
+                    <h:outputLabel value="#{messages.EditUserLabel_mail}" for="mail" />
+                    <h:inputText id="mail" value="#{userController.selected.mail}" title="#{messages.EditUserTitle_mail}" required="true" requiredMessage="#{messages.EditUserRequiredMessage_mail}"/>
+                    <h:outputLabel value="#{messages.EditUserLabel_username}" for="username" />
+                    <h:inputText id="username" value="#{userController.selected.username}" title="#{messages.EditUserTitle_username}" required="true" requiredMessage="#{messages.EditUserRequiredMessage_username}"/>
+                    <h:outputLabel value="#{messages.EditUserLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{userController.selected.password}" title="#{messages.EditUserTitle_password}" required="true" requiredMessage="#{messages.EditUserRequiredMessage_password}"/>
+                    <h:outputLabel value="#{messages.EditUserLabel_phone}" for="phone" />
+                    <h:inputText id="phone" value="#{userController.selected.phone}" title="#{messages.EditUserTitle_phone}" required="true" requiredMessage="#{messages.EditUserRequiredMessage_phone}"/>
+                    <h:outputLabel value="#{messages.EditUserLabel_type}" for="type" />
+                    <h:inputText id="type" value="#{userController.selected.type}" title="#{messages.EditUserTitle_type}" required="true" requiredMessage="#{messages.EditUserRequiredMessage_type}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{userController.update}" value="#{messages.EditUserSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{messages.EditUserViewLink}"/>
+                <br />
+                <h:commandLink action="#{userController.prepareList}" value="#{messages.EditUserShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/admin/index.xhtml" value="#{messages.EditUserIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

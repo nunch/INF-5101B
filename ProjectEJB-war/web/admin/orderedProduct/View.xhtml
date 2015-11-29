@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.ViewOrderedProductTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{messages.ViewOrderedProductLabel_quantity}"/>
+                    <h:outputText value="#{orderedProductController.selected.quantity}" title="#{messages.ViewOrderedProductTitle_quantity}"/>
+                    <h:outputText value="#{messages.ViewOrderedProductLabel_product}"/>
+                    <h:outputText value="#{orderedProductController.selected.product}" title="#{messages.ViewOrderedProductTitle_product}"/>
+                    <h:outputText value="#{messages.ViewOrderedProductLabel_user}"/>
+                    <h:outputText value="#{orderedProductController.selected.user}" title="#{messages.ViewOrderedProductTitle_user}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{orderedProductController.destroyAndView}" value="#{messages.ViewOrderedProductDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{messages.ViewOrderedProductEditLink}"/>
+                <br />
+                <h:commandLink action="#{orderedProductController.prepareCreate}" value="#{messages.ViewOrderedProductCreateLink}" />
+                <br />
+                <h:commandLink action="#{orderedProductController.prepareList}" value="#{messages.ViewOrderedProductShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/admin/index.xhtml" value="#{messages.ViewOrderedProductIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

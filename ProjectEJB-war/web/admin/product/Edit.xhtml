@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.EditProductTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{messages.EditProductLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{productController.selected.id}" title="#{messages.EditProductTitle_id}" required="true" requiredMessage="#{messages.EditProductRequiredMessage_id}"/>
+                    <h:outputLabel value="#{messages.EditProductLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{productController.selected.name}" title="#{messages.EditProductTitle_name}" required="true" requiredMessage="#{messages.EditProductRequiredMessage_name}"/>
+                    <h:outputLabel value="#{messages.EditProductLabel_price}" for="price" />
+                    <h:inputText id="price" value="#{productController.selected.price}" title="#{messages.EditProductTitle_price}" required="true" requiredMessage="#{messages.EditProductRequiredMessage_price}"/>
+                    <h:outputLabel value="#{messages.EditProductLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{productController.selected.description}" title="#{messages.EditProductTitle_description}" required="true" requiredMessage="#{messages.EditProductRequiredMessage_description}"/>
+                    <h:outputLabel value="#{messages.EditProductLabel_lastUpdate}" for="lastUpdate" />
+                    <h:inputText id="lastUpdate" value="#{productController.selected.lastUpdate}" title="#{messages.EditProductTitle_lastUpdate}" required="true" requiredMessage="#{messages.EditProductRequiredMessage_lastUpdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{messages.EditProductLabel_image}" for="image" />
+                    <h:inputText id="image" value="#{productController.selected.image}" title="#{messages.EditProductTitle_image}" required="true" requiredMessage="#{messages.EditProductRequiredMessage_image}"/>
+                    <h:outputLabel value="#{messages.EditProductLabel_categoryId}" for="categoryId" />
+                    <h:selectOneMenu id="categoryId" value="#{productController.selected.categoryId}" title="#{messages.EditProductTitle_categoryId}" required="true" requiredMessage="#{messages.EditProductRequiredMessage_categoryId}">
+                        <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{messages.EditProductLabel_compagnyId}" for="compagnyId" />
+                    <h:selectOneMenu id="compagnyId" value="#{productController.selected.compagnyId}" title="#{messages.EditProductTitle_compagnyId}" required="true" requiredMessage="#{messages.EditProductRequiredMessage_compagnyId}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{productController.update}" value="#{messages.EditProductSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{messages.EditProductViewLink}"/>
+                <br />
+                <h:commandLink action="#{productController.prepareList}" value="#{messages.EditProductShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/admin/index.xhtml" value="#{messages.EditProductIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

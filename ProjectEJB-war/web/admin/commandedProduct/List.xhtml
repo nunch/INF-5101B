@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.ListCommandedProductTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{messages.ListCommandedProductEmpty}" rendered="#{commandedProductController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{commandedProductController.items.rowCount > 0}">
+                    <h:outputText value="#{commandedProductController.pagination.pageFirstItem + 1}..#{commandedProductController.pagination.pageLastItem + 1}/#{commandedProductController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{commandedProductController.previous}" value="#{messages.Previous} #{commandedProductController.pagination.pageSize}" rendered="#{commandedProductController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{commandedProductController.next}" value="#{messages.Next} #{commandedProductController.pagination.pageSize}" rendered="#{commandedProductController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{commandedProductController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{messages.ListCommandedProductTitle_quantity}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.quantity}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{messages.ListCommandedProductTitle_product}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.product}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{messages.ListCommandedProductTitle_command}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.command}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{commandedProductController.prepareView}" value="#{messages.ListCommandedProductViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{commandedProductController.prepareEdit}" value="#{messages.ListCommandedProductEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{commandedProductController.destroy}" value="#{messages.ListCommandedProductDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{commandedProductController.prepareCreate}" value="#{messages.ListCommandedProductCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/admin/index.xhtml" value="#{messages.ListCommandedProductIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

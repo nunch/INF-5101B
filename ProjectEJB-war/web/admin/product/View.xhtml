@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.ViewProductTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{messages.ViewProductLabel_id}"/>
+                    <h:outputText value="#{productController.selected.id}" title="#{messages.ViewProductTitle_id}"/>
+                    <h:outputText value="#{messages.ViewProductLabel_name}"/>
+                    <h:outputText value="#{productController.selected.name}" title="#{messages.ViewProductTitle_name}"/>
+                    <h:outputText value="#{messages.ViewProductLabel_price}"/>
+                    <h:outputText value="#{productController.selected.price}" title="#{messages.ViewProductTitle_price}"/>
+                    <h:outputText value="#{messages.ViewProductLabel_description}"/>
+                    <h:outputText value="#{productController.selected.description}" title="#{messages.ViewProductTitle_description}"/>
+                    <h:outputText value="#{messages.ViewProductLabel_lastUpdate}"/>
+                    <h:outputText value="#{productController.selected.lastUpdate}" title="#{messages.ViewProductTitle_lastUpdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{messages.ViewProductLabel_image}"/>
+                    <h:outputText value="#{productController.selected.image}" title="#{messages.ViewProductTitle_image}"/>
+                    <h:outputText value="#{messages.ViewProductLabel_categoryId}"/>
+                    <h:outputText value="#{productController.selected.categoryId}" title="#{messages.ViewProductTitle_categoryId}"/>
+                    <h:outputText value="#{messages.ViewProductLabel_compagnyId}"/>
+                    <h:outputText value="#{productController.selected.compagnyId}" title="#{messages.ViewProductTitle_compagnyId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productController.destroyAndView}" value="#{messages.ViewProductDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{messages.ViewProductEditLink}"/>
+                <br />
+                <h:commandLink action="#{productController.prepareCreate}" value="#{messages.ViewProductCreateLink}" />
+                <br />
+                <h:commandLink action="#{productController.prepareList}" value="#{messages.ViewProductShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/admin/index.xhtml" value="#{messages.ViewProductIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

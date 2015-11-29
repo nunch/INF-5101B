@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.CreateCategoryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{messages.CreateCategoryLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{categoryController.selected.id}" title="#{messages.CreateCategoryTitle_id}" required="true" requiredMessage="#{messages.CreateCategoryRequiredMessage_id}"/>
+                    <h:outputLabel value="#{messages.CreateCategoryLabel_nameFr}" for="nameFr" />
+                    <h:inputText id="nameFr" value="#{categoryController.selected.nameFr}" title="#{messages.CreateCategoryTitle_nameFr}" required="true" requiredMessage="#{messages.CreateCategoryRequiredMessage_nameFr}"/>
+                    <h:outputLabel value="#{messages.CreateCategoryLabel_nameEng}" for="nameEng" />
+                    <h:inputText id="nameEng" value="#{categoryController.selected.nameEng}" title="#{messages.CreateCategoryTitle_nameEng}" required="true" requiredMessage="#{messages.CreateCategoryRequiredMessage_nameEng}"/>
+                    <h:outputLabel value="#{messages.CreateCategoryLabel_superId}" for="superId" />
+                    <h:selectOneMenu id="superId" value="#{categoryController.selected.superId}" title="#{messages.CreateCategoryTitle_superId}" >
+                        <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{categoryController.create}" value="#{messages.CreateCategorySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{categoryController.prepareList}" value="#{messages.CreateCategoryShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/admin/index.xhtml" value="#{messages.CreateCategoryIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,58 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:func="http://example.com/functions"
+    >
+
+	<nav id="top">
+		<div class="container">
+			<div class="pull-left">
+			</div>
+			<div id="top-links" class="nav pull-right">
+				<ul class="list-inline">
+					<li class="dropdown">
+                                            <a href="${request.contextPath}/web/account" title="My Account" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md">${messages['navtop.myAccount']}</span> <span class="caret"></span></a>
+						<ul class="dropdown-menu dropdown-menu-right">
+                                                    <c:set var="truc" value="session"/>
+                                                    <c:set var="truc2" value="user"/>
+                                                    <c:choose>
+                                                        <c:when test="${user.username==truc}">
+                                                            <li><a href="${request.contextPath}/faces/register.xhtml">${messages['navtop.register']}</a></li>
+                                                            <li><a href="${request.contextPath}/faces/login.xhtml">${messages['navtop.login']}</a></li>
+                                                        </c:when>
+                                                        <c:when test="${user.type==truc2}">
+                                                            <li><a href="${request.contextPath}/faces/listCards.xhtml">${messages['navtop.viewCards']}</a></li>
+                                                            <li><a href="${request.contextPath}/faces/listAdresses.xhtml">${messages['navtop.viewAdresses']}</a></li>
+                                                            <li><a href="${request.contextPath}/faces/listCommands.xhtml">${messages['navtop.viewCommands']}</a></li>
+                                                            <li><a href="${request.contextPath}/web/logOff">${messages['navtop.logOff']}</a></li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <li><a href="${request.contextPath}/faces/listProducts.xhtml">${messages['navtop.viewProducts']}</a></li>
+                                                            <li><a href="${request.contextPath}/web/logOff">${messages['navtop.logOff']}</a></li>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    
+							
+                                                    
+						</ul>
+					</li>
+			        <li><a href="${request.contextPath}/web/cart" title="Shopping Cart"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">${messages['navtop.shoppingCart']}</span></a></li>
+                                <li>
+                                    <form action="${request.contextPath}/web/index" method="post">
+                                        <input type="hidden" name="language" value="fr"/>
+                                        <input type='image' src='${request.contextPath}/images/frenchFlag.jpg' alt='submit'/> 
+                                    </form>
+                                </li>
+                                <li>
+                                    <form action="${request.contextPath}/web/index" method="post">
+                                        <input type="hidden" name="language" value="en"/>
+                                        <input type='image' src='${request.contextPath}/images/englishFlag.png' alt='submit'/> 
+                                    </form>
+                                </li>
+                                </ul>
+			</div>
+		</div>
+	</nav>
+</ui:composition>

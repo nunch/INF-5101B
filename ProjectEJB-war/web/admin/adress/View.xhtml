@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.ViewAdressTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{messages.ViewAdressLabel_id}"/>
+                    <h:outputText value="#{adressController.selected.id}" title="#{messages.ViewAdressTitle_id}"/>
+                    <h:outputText value="#{messages.ViewAdressLabel_adress}"/>
+                    <h:outputText value="#{adressController.selected.adress}" title="#{messages.ViewAdressTitle_adress}"/>
+                    <h:outputText value="#{messages.ViewAdressLabel_cityName}"/>
+                    <h:outputText value="#{adressController.selected.cityName}" title="#{messages.ViewAdressTitle_cityName}"/>
+                    <h:outputText value="#{messages.ViewAdressLabel_country}"/>
+                    <h:outputText value="#{adressController.selected.country}" title="#{messages.ViewAdressTitle_country}"/>
+                    <h:outputText value="#{messages.ViewAdressLabel_userId}"/>
+                    <h:outputText value="#{adressController.selected.userId}" title="#{messages.ViewAdressTitle_userId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{adressController.destroyAndView}" value="#{messages.ViewAdressDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{messages.ViewAdressEditLink}"/>
+                <br />
+                <h:commandLink action="#{adressController.prepareCreate}" value="#{messages.ViewAdressCreateLink}" />
+                <br />
+                <h:commandLink action="#{adressController.prepareList}" value="#{messages.ViewAdressShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/admin/index.xhtml" value="#{messages.ViewAdressIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

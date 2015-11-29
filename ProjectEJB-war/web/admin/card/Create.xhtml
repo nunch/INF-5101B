@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.CreateCardTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{messages.CreateCardLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{cardController.selected.id}" title="#{messages.CreateCardTitle_id}" required="true" requiredMessage="#{messages.CreateCardRequiredMessage_id}"/>
+                    <h:outputLabel value="#{messages.CreateCardLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{cardController.selected.name}" title="#{messages.CreateCardTitle_name}" />
+                    <h:outputLabel value="#{messages.CreateCardLabel_userId}" for="userId" />
+                    <h:selectOneMenu id="userId" value="#{cardController.selected.userId}" title="#{messages.CreateCardTitle_userId}" required="true" requiredMessage="#{messages.CreateCardRequiredMessage_userId}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cardController.create}" value="#{messages.CreateCardSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{cardController.prepareList}" value="#{messages.CreateCardShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/admin/index.xhtml" value="#{messages.CreateCardIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

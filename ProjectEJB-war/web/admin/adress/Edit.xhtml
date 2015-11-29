@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.EditAdressTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{messages.EditAdressLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{adressController.selected.id}" title="#{messages.EditAdressTitle_id}" required="true" requiredMessage="#{messages.EditAdressRequiredMessage_id}"/>
+                    <h:outputLabel value="#{messages.EditAdressLabel_adress}" for="adress" />
+                    <h:inputText id="adress" value="#{adressController.selected.adress}" title="#{messages.EditAdressTitle_adress}" />
+                    <h:outputLabel value="#{messages.EditAdressLabel_cityName}" for="cityName" />
+                    <h:inputText id="cityName" value="#{adressController.selected.cityName}" title="#{messages.EditAdressTitle_cityName}" />
+                    <h:outputLabel value="#{messages.EditAdressLabel_country}" for="country" />
+                    <h:inputText id="country" value="#{adressController.selected.country}" title="#{messages.EditAdressTitle_country}" required="true" requiredMessage="#{messages.EditAdressRequiredMessage_country}"/>
+                    <h:outputLabel value="#{messages.EditAdressLabel_userId}" for="userId" />
+                    <h:selectOneMenu id="userId" value="#{adressController.selected.userId}" title="#{messages.EditAdressTitle_userId}" required="true" requiredMessage="#{messages.EditAdressRequiredMessage_userId}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{adressController.update}" value="#{messages.EditAdressSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{messages.EditAdressViewLink}"/>
+                <br />
+                <h:commandLink action="#{adressController.prepareList}" value="#{messages.EditAdressShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/admin/index.xhtml" value="#{messages.EditAdressIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
